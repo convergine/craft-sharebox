@@ -1,0 +1,27 @@
+{% extends "_layouts/cp" %}
+{% do view.registerAssetBundle("convergine\\sharebox\\assets\\FilesCpAssets") %}
+{% set selectedSubnavItem = 'files' %}
+{% block content %}
+
+    {% if _noticeMessage is defined %}
+        {{ _noticeMessage|raw }}
+    {% else %}
+        <div id="folder_file_cont" class="">
+            <div id="folder_manage">
+                <div id="folder_manage_cont">
+                    <span id="folder_name">{{ 'Root Folder'|t('convergine-sharebox') }}</span>
+                    <button id="folder_up" class="btn primary icon" data-icon="uarr" style="display: none">{{ 'Back'|t('convergine-sharebox') }}</button>
+                </div>
+                <button onclick="addFolder()" class="btn submit add icon">{{ 'Add Folder'|t('convergine-sharebox') }}</button>
+            </div>
+
+            <div id="files_table_cont">
+                {{ files_table|raw }}
+            </div>
+        </div>
+        <h2>{{ 'Upload Files'|t('convergine-sharebox') }}</h2>
+
+        <div id="file_upload" class="dropzone-cont dz-clickable"></div>
+    {{ csrfInput() }}
+    {% endif %}
+{% endblock %}

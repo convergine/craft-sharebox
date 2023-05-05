@@ -1,0 +1,12 @@
+{% set settings = craft.app.getPlugins().getPlugin('convergine-sharebox').getSettings() %}
+{% set errors = craft.app.session.getFlash('errors') %}
+{% set success = craft.app.session.getFlash('success') %}
+{% if errors %}
+    <div class="alert alert-danger">
+        {{ errors|json_encode(constant('JSON_PRETTY_PRINT')) }}
+    </div>
+{% endif %}
+
+{% if(f_error==false) %}
+    {{ content | raw }}
+{% endif %}

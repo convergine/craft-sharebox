@@ -1,0 +1,16 @@
+<div class="sharebox-instructions">
+    <h2 class="warning">{{ 'STORAGE PROVIDER NOT SET'|t('convergine-sharebox') }}</h2>
+    <p>{{ 'It seems that you forgot to set the provider environment variable.'|t('convergine-sharebox') }}<br>
+        {{ 'You need to set {code1} variable in your {code2} file to continue.'|t('convergine-sharebox', {'code1': '<code class="highlight">SHAREBOX_PROVIDER</code>', 'code2': '<code class="highlight">.env</code>'})|raw }}</p>
+    <pre>
+
+<span class="highlight">SHAREBOX_PROVIDER=AZUREBLOB</span>
+    </pre>
+    <p>{{ 'Supported options:'|t('convergine-sharebox') }}</p>
+    <ul>
+        <li><code class="highlight">AZUREBLOB</code> - {{ 'for Azure Blob Storage'|t('convergine-sharebox') }}</li>
+        <li><code class="highlight">AMAZONS3</code> - {{ 'for Amazon S3 Storage'|t('convergine-sharebox') }}</li>
+    </ul>
+</div>
+
+{% include "convergine-sharebox/_components/convergine-footer" %}

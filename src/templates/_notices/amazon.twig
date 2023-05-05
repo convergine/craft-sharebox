@@ -1,0 +1,23 @@
+
+<div class="sharebox-instructions">
+    <h2 class="warning">{{ 'amazon-missing-parameters-heading'|t('convergine-sharebox') }}</h2>
+    <p>{{ 'add-variables-env'|t('convergine-sharebox', {'env_file': '<code class="highlight">.env</code>'})|raw }}</p>
+
+    <ul>
+        <li><code class="highlight">AWS_ACCESS_KEY_ID</code> - {{ 'aws-access-key-id'|t('convergine-sharebox') }}</li>
+        <li><code class="highlight">AWS_SECRET_ACCESS_KEY</code> - {{ 'aws-secret-access-key'|t('convergine-sharebox') }}</li>
+        <li><code class="highlight">AWS_REGION</code> - {{ 'aws-region'|t('convergine-sharebox') }}</li>
+        <li><code class="highlight">AWS_BUCKET</code> - {{ 'aws-bucket'|t('convergine-sharebox') }}</li>
+    </ul>
+    <p>{{ 'example'|t('convergine-sharebox') }}</p>
+    <pre>
+
+<span class="highlight">AWS_ACCESS_KEY_ID</span>=hFfSdqF7u8B+y...
+<span class="highlight">AWS_SECRET_ACCESS_KEY</span>=my_key
+<span class="highlight">AWS_REGION</span>=ca-central-1
+<span class="highlight">AWS_BUCKET</span>=my_bucket
+    </pre>
+    <p>{{ 'refer-to-documentation'|t('convergine-sharebox', {'documentation_link': 'https://github.com/convergine/craft-sharebox/blob/master/README.md'})|raw }}</p>
+</div>
+
+{% include "convergine-sharebox/_components/convergine-footer" %}

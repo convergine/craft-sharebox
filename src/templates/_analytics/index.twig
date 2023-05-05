@@ -1,0 +1,36 @@
+{% extends "_layouts/cp" %}
+{% import '_includes/forms' as forms %}
+{% do view.registerAssetBundle("convergine\\sharebox\\assets\\FilesCpAssets") %}
+{% set title = 'Statistics'|t('convergine-sharebox') %}
+{% set selectedSubnavItem = 'analytics' %}
+{% block content %}
+    <div id="folder_file_cont" class="">
+
+        <form >
+            {{ csrfInput() }}
+            <div class="dates_selector">
+                <div class="date_cont">
+                    {{ forms.dateField({
+                        label:'Date From'|t('convergine-sharebox'),
+                        name:'date_from',
+                        value:date_from,
+                        required:true
+                    }) }}
+                </div>
+                <div class="date_cont">
+
+                    {{ forms.dateField({
+                        label:'Date To'|t('convergine-sharebox'),
+                        name:'date_to',
+                        value:date_to,
+                        required:true
+                    }) }}
+                </div>
+                <button class="btn submit" type="button" id="analytics_btn">{{ 'Submit'|t('convergine-sharebox') }}</button>
+            </div>
+        </form>
+        <div id="analytics_table_cont">
+            {{ table|raw }}
+        </div>
+    </div>
+{% endblock %}

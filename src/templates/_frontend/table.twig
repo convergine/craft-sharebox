@@ -1,0 +1,40 @@
+{% set filesService = craft.app.getPlugins().getPlugin('convergine-sharebox').fileService %}
+<table id="conv_files_table" class="display dataTable no-footer table table-hover">
+    <thead>
+    <tr>
+        <th>File</th>
+        <th>Size</th>
+        <th data-width="100px" class="no-sort"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for folder in folders %}
+
+        <tr>
+            <td class="cell_folder"><a href="javascript:;" data-parent_id="{{ folder.parent_id }}"
+                                       data-id="{{ folder.id }}" class="open_folder">{{ folder.name }}</a></td>
+            <td data-order="0"></td>
+            <td>
+
+            </td>
+
+        </tr>
+    {% endfor %}
+    {% for file in files_list %}
+
+        <tr>
+            <td class="cell_file"><a href="/convergine-sharebox/frontend/download/{{ file.uid }}/{{ file.name }}"
+                target="_blank"
+                >{{ file.name }}</a></td>
+            <td data-order="{{ file.size }}">{{ filesService.getFileSize(file.size) }}</td>
+            <td>
+                <a href="/convergine-sharebox/frontend/download/{{ file.uid }}/{{ file.name }}?inline=false"
+                   target="_blank"
+                   class="file_download">Download</a>
+            </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

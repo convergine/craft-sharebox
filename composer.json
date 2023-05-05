@@ -1,0 +1,53 @@
+{
+  "name": "convergine/craft-sharebox",
+  "description": "ShareBox allows to share files hosted on Azure Blob Storage or Amazon S3 with your site visitors.",
+  "version": "1.0.0",
+  "type": "craft-plugin",
+  "license": "proprietary",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "convergine",
+    "craft file manager",
+    "azure blob storage",
+    "amazon s3",
+    "file hosting",
+    "public file sharing",
+    "file library",
+    "cloud storage",
+    "files sharing"
+  ],
+  "support": {
+    "issues": "https://github.com/convergine/craft-sharebox/issues?state=open",
+    "source": "https://github.com/convergine/craft-sharebox",
+    "docs": "https://github.com/convergine/craft-sharebox/blob/master/README.md"
+  },
+  "authors": [
+    {
+      "name": "Convergine Corp.",
+      "homepage": "https://www.convergine.com"
+    }
+  ],
+  "require": {
+    "craftcms/cms": "^4.0",
+    "microsoft/azure-storage-blob": "^1.5.3",
+    "aws/aws-sdk-php": "^3.234.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "convergine\\sharebox\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "ShareBox",
+    "handle": "convergine-sharebox",
+    "hasCpSettings": true,
+    "hasCpSection": true,
+    "developerUrl": "https://www.convergine.com",
+    "documentationUrl": "https://github.com/convergine/craft-sharebox/blob/master/README.md",
+    "changelogUrl": "https://github.com/convergine/craft-sharebox/blob/master/CHANGELOG.md",
+    "class": "convergine\\sharebox\\ShareBox"
+  }
+}

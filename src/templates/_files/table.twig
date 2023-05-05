@@ -1,0 +1,74 @@
+{% set settings = craft.app.getPlugins().getPlugin('convergine-sharebox').getSettings() %}
+{% set filesService = craft.app.getPlugins().getPlugin('convergine-sharebox').fileService %}
+<table id="files" class=" display dataTable no-footer" style="width:100%">
+    <thead>
+    <tr>
+        <th>File</th>
+        <th>Size</th>
+        <th>Downloads</th>
+        <th data-width="220px" style="width:200px;">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for folder in folders %}
+
+        <tr>
+            <td data-icon="folder"><a href="javascript:;" data-parent_id="{{ folder.parent_id }}" data-id="{{ folder.id }}" class="conv_open_folder">{{ folder.name }}</a></td>
+            <td data-order="0"></td>
+            <td></td>
+            <td>
+                <button type="button"
+                        data-url="{{ settings.files_page_url }}?fd={{ folder.uid }}"
+                        class="btn secondary conv_url_btn" data-icon="world" title="Click to copy link"></button>
+                <form method="post" style="display: inline">
+                    <input type="hidden" name="action" value="/convergine-sharebox/files/remove-folder">
+                    <input type="hidden" name="folder_id" value="{{ folder.id }}">
+                    {{ csrfInput() }}
+                    <button type="button"
+                            class="btn submit conv_remove_folder_btn">Remove</button>
+                </form>
+                <form method="post" style="display: inline">
+                    <input type="hidden" name="action" value="/convergine-sharebox/files/get-folders-array">
+                    <input type="hidden" name="move_folder" value="{{ folder.id }}">
+                    {{ csrfInput() }}
+                    <button type="button"  data-icon="share"
+                            class="btn add conv_move_folder_btn">Move</button>
+                </form>
+            </td>
+
+        </tr>
+    {% endfor %}
+    {% for file in files %}
+
+        <tr>
+            <td data-icon="file"><a href="/actions/convergine-sharebox/files/download?inline=true&uid={{ file.uid }}"
+                        {% if file.mime !='1application/pdf' %}
+                            target="_blank"
+                        {% endif %}
+                >{{ file.name }}</a></td>
+            <td data-order="{{ file.size }}">{{ filesService.getFileSize(file.size) }}</td>
+            <td>{{ file.downloaded }}</td>
+            <td>
+                <button type="button"
+                        data-url="{{ settings.files_page_url }}?ff={{ file.uid }}"
+                        class="btn secondary conv_url_btn" data-icon="world"></button>
+                <form method="post" style="display: inline">
+                    <input type="hidden" name="action" value="/convergine-sharebox/files/remove-file">
+                    <input type="hidden" name="file_id" value="{{ file.id }}">
+                    {{ csrfInput() }}
+                    <button type="button"
+                            class="btn submit conv_remove_file">Remove</button>
+                </form>
+                <form method="post" style="display: inline">
+                    <input type="hidden" name="action" value="/convergine-sharebox/files/get-file-folders-array">
+                    <input type="hidden" name="move_file" value="{{ file.id }}">
+                    {{ csrfInput() }}
+                    <button type="button"  data-icon="share"
+                            class="btn add conv_move_file_btn">Move</button>
+                </form>
+            </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

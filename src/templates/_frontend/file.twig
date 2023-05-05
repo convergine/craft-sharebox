@@ -1,0 +1,15 @@
+{% set filesService = craft.app.getPlugins().getPlugin('convergine-sharebox').fileService %}
+<div class="conv_file_cont">
+    <a href="/convergine-sharebox/frontend/download/{{ file.uid }}/{{ file.name }}"
+       target="_blank"
+    >{{ file.name }}</a> | <a href="/convergine-sharebox/frontend/download/{{ file.uid }}/{{ file.name }}?inline=false"
+                              target="_blank"
+    >download</a> - {{ filesService.getFileSize(file.size) }}
+    {% if view_logout %}
+        <form method="post" accept-charset="UTF-8" id="login-form" autocomplete="off">
+            {{ csrfInput() }}
+            <input type="hidden" name="action" value="convergine-sharebox/frontend/logout">
+            <button type="submit" class="conv_button conv_button_logout">Logout</button>
+        </form>
+    {% endif %}
+</div>

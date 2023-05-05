@@ -1,0 +1,5 @@
+{% macro getWarning(text) -%}
+    <ul id="alerts" style="text-align: left">
+        <li><span data-icon="alert" aria-label="{{ 'Error'|t('app') }}"></span> {{ text|raw }}</li>
+    </ul>
+{%- endmacro %}

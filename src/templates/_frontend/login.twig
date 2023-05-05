@@ -1,0 +1,27 @@
+{% set settings = craft.app.getPlugins().getPlugin('convergine-sharebox').getSettings() %}
+
+<div class="conv_login_form_cont">
+    <form method="post" accept-charset="UTF-8" id="conv-login-form" autocomplete="off">
+        {{ csrfInput() }}
+        <input type="hidden" id="donation-action" name="action" value="convergine-sharebox/frontend/check-password">
+        <input type="hidden" name="token" id="token" value="">
+
+        <div class="conv_login_form_input_cont">
+            <label for="conv_password">Password<sup>*</sup></label>
+            <input required="" class=" " autocomplete="off" type="password" value="" name="password"
+                   id="conv_password">
+        </div>
+
+        <div class="conv_login_form_button_cont">
+            <button type="submit" id="conv-login-button"
+                    class="conv_button">Submit
+            </button>
+        </div>
+    </form>
+</div>
+    {% if use_recaptcha %}
+        <script src='https://www.google.com/recaptcha/api.js?render={{ settings.recaptcha_site }}'></script>
+        <script>
+            const conv_recaptcha_site = '{{ settings.recaptcha_site }}';
+        </script>
+    {% endif %}

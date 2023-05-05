@@ -1,0 +1,25 @@
+<div id="conv_files_container">
+    <div class="conv_files_bar">
+        <div class="conv_files_nav">
+            <div id="conv_files_breadcrumb">
+                Root Folder
+            </div>
+            <button id="conv_folder_up" class="conv_folder_up" style="display:none;">Back</button>
+        </div>
+        {% if view_logout %}
+            <form method="post" accept-charset="UTF-8" id="login-form" autocomplete="off">
+                {{ csrfInput() }}
+                <input type="hidden" name="action" value="convergine-sharebox/frontend/logout">
+                <button type="submit" class="conv_button conv_button_logout">Logout</button>
+            </form>
+        {% else %}
+            {{ csrfInput() }}
+        {% endif %}
+    </div>
+    <div id="conv_files_table_cont">
+        {{ files_table|raw }}
+    </div>
+</div>
+<script>
+    document.folder_id = {{ root_folder }};
+</script>

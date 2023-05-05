@@ -1,0 +1,94 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+{% set title = form.title is defined ? form.title : 'ShareBox settings' %}
+
+{% set selectedSubnavItem = 'settings' %}
+{% set fullPageForm = true %}
+
+{% set crumbs = [
+    { label: "Files", url: cpUrl('convergine-sharebox') },
+    { label: 'Settings', url: '#' },
+] %}
+
+
+{# The content of the CP Section#}
+{% block content %}
+    {{ csrfInput() }}
+    {{ actionInput('convergine-sharebox/settings/save') }}
+    {{ redirectInput('convergine-sharebox/settings') }}
+
+    <div class="sharebox-cpsettings-wrapper">
+        <div class="sharebox-cpfields-wrapper">
+            <h1>{{ "Frontend Settings"|t('convergine-sharebox') }}</h1>
+            {{ forms.textField({
+                label:'ShareBox URL'|t('convergine-sharebox'),
+                name:'settings[files_page_url]',
+                value:settings.files_page_url,
+                instructions:'Enter URL of the frontend page where you\'ve added the ShareBox twig code'|t('convergine-sharebox'),
+                required:true,
+                errors: (settings is defined ? settings.getErrors('files_page_url') : null),
+            }) }}
+    
+            {{ forms.lightswitchField({
+                label: "Password Protection"|t('convergine-sharebox'),
+                name: 'settings[use_password]',
+                instructions:'Enable if you want to password-protect the ShareBox frontend page.'|t('convergine-sharebox'),
+                on: settings.use_password,
+                toggle: 'serverProtection'
+            }) }}
+    
+            <div id="serverProtection" class="{% if not settings.use_password %}hidden{% endif %}">
+    
+                {% if settings.password_changed_at %}
+                    <p>Last time the password was set/changed: {{ settings.password_changed_at }}</p>
+                {% endif %}
+    
+                {{ forms.passwordField({
+                    label:'Password'|t('convergine-sharebox'),
+                    name:'settings[front_password]',
+                    value:'',
+                    required:true,
+                    instructions:'Minimum 6 characters, at least one lower and upper case character and a digit.'|t('convergine-sharebox'),
+                    errors: (settings is defined ? settings.getErrors('front_password') : null),
+                }) }}
+    
+                {{ forms.passwordField({
+                    label:'Confirm Password'|t('convergine-sharebox'),
+                    name:'settings[confirm_front_password]',
+                    value:'',
+                    required:true,
+                    errors: (settings is defined ? settings.getErrors('confirm_front_password') : null),
+                }) }}
+    
+                {{ forms.lightswitchField({
+                label: "Enable Google ReCaptcha?"|t('convergine-sharebox'),
+                name: 'settings[enable_recaptcha]',
+                    instructions:'We recommend enabling this feature to protect password page. You can register a new site <a href="{link}" target="_blank">here</a>'|t('convergine-sharebox', {'link': 'https://www.google.com/recaptcha/admin'}),
+                    on: settings.enable_recaptcha,
+                    toggle: 'recaptchaCont'
+                }) }}
+    
+                <div id="recaptchaCont" class="{% if not settings.enable_recaptcha %}hidden{% endif %}">
+                    {{ forms.textField({
+                        label:'ReCaptcha Site Key'|t('convergine-sharebox'),
+                        name:'settings[recaptcha_site]',
+                        value:settings.recaptcha_site,
+                        required:true,
+                        errors: (settings is defined ? settings.getErrors('recaptcha_site') : null),
+                    }) }}
+                    {{ forms.textField({
+                        label:'ReCaptcha Secret Key'|t('convergine-sharebox'),
+                        name:'settings[recaptcha_secret]',
+                        value:settings.recaptcha_secret,
+                        required:true,
+                        errors: (settings is defined ? settings.getErrors('recaptcha_secret') : null),
+                    }) }}
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <div class="clear"></div>
+    {% include "convergine-sharebox/_components/convergine-footer" %}
+{% endblock %}
