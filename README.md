@@ -1,4 +1,4 @@
-# ShareBox for Craft CMS 4
+# ShareBox for Craft CMS 4 / Craft CMS 5
 ![Screenshot](./docs/images/ShareBox_Opening_Image.jpg)
 
 ShareBox is a file manager plugin for CraftCMS v4.x that allows to upload and share files from Azure Blob Storage or Amazon S3 with your site visitors on the frontend.

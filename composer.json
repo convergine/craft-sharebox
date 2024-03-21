@@ -1,7 +1,7 @@
 {
   "name": "convergine/craft-sharebox",
   "description": "ShareBox allows to share files hosted on Azure Blob Storage or Amazon S3 with your site visitors.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "craft-plugin",
   "license": "proprietary",
   "keywords": [
@@ -31,7 +31,7 @@
     }
   ],
   "require": {
-    "craftcms/cms": "^4.0",
+    "craftcms/cms": "^4.0.0 || ^5.0.0",
     "microsoft/azure-storage-blob": "^1.5.3",
     "aws/aws-sdk-php": "^3.234.2"
   },
